@@ -7,7 +7,7 @@ admin/ - admin panel
 
 Head to the root web address. A swagger module will guide you trough all the possible API endpoints with examples as in the image below:
 
-
+<img src="images/swagger.png">
 
 
 <br>
