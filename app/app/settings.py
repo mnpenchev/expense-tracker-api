@@ -43,9 +43,21 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'authentication',
+    'social_auth',
+    'expenses',
     'drf_yasg',  # https://drf-yasg.readthedocs.io/en/stable/readme.html#installation
     'rest_framework_simplejwt.token_blacklist',
 ]
+
+SWAGGER_SETTINGS={
+    'SECURITY_DEFINITIONS':{
+        'Bearer':{
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header'
+        }
+    }
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

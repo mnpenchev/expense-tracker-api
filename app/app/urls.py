@@ -22,11 +22,11 @@ from drf_yasg import openapi
 
 schema_view = get_schema_view(
    openapi.Info(
-      title="Cerro user backend API",
+      title="Expenses tracker backend API",
       default_version='v1',
-      description="Cerro user backend API",
-      terms_of_service="https://www.cerro.io/policies/terms/",
-      contact=openapi.Contact(email="CerroAImailer@gmail.com"),
+      description="Expenses tracker backend API",
+      terms_of_service="",
+      contact=openapi.Contact(email="email@app.local"),
       license=openapi.License(name="BSD License"),
    ),
    public=True,
@@ -36,6 +36,7 @@ schema_view = get_schema_view(
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/', include('authentication.urls')),
+    path('expenses/', include('expenses.urls')),
     path('social_auth/', include(('social_auth.urls', 'social_auth'),
                                  namespace="social_auth")),
     path('', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
