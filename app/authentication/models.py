@@ -1,12 +1,11 @@
 from django.db import models
-
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.db import models
 from rest_framework_simplejwt.tokens import RefreshToken
 
 
 class UserManager(BaseUserManager):
-
+    """ Manager for user profiles. Extends the base user manager """
     def create_user(self, username, email, password=None):
         if username is None:
             raise TypeError('Users must have a username')
@@ -30,8 +29,15 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser, PermissionsMixin):
+    """ Custom database user model that support using email instead of username """
     username = models.CharField(max_length=255, unique=True, db_index=True)
     email = models.EmailField(max_length=255, unique=True, db_index=True)
+
+    first_name = models.CharField(max_length=255, default="")
+    last_name = models.CharField(max_length=255, default="")
+    title = models.CharField(max_length=15, default="")
+    # date_of_birth = models.DateField(auto_now=True)
+
     is_verified = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
@@ -45,10 +51,12 @@ class User(AbstractBaseUser, PermissionsMixin):
     objects = UserManager()
 
     def __str__(self):
+        """ Return string representation of the user """
         return self.email
 
     def tokens(self):
-        refresh=RefreshToken.for_user(self)
+        """ Return user token for active user """
+        refresh = RefreshToken.for_user(self)
         return {
             'refresh': str(refresh),
             'access': str(refresh.access_token)

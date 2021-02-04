@@ -20,7 +20,7 @@ from .renderers import UserRenderer
 
 
 class RegisterView(generics.GenericAPIView):
-
+    """ Register a new user in the system"""
     serializer_class = RegisterSerializer
     renderer_classes = (UserRenderer, )
 
@@ -36,8 +36,8 @@ class RegisterView(generics.GenericAPIView):
 
         current_site = get_current_site(request).domain
         relativeLink = reverse('email-verify')
-        absurl = 'http://'+current_site+relativeLink+"?token="+str(token)
-        email_body = 'Hi '+user.username+\
+        absurl = 'http://' + current_site + relativeLink + "?token="+str(token)
+        email_body = 'Hi ' + user.username +\
                      ' , \n Use the link below to verify your email \n'+absurl
         data = {'to_email': user.email, 'email_body': email_body,
                 'email_subject': 'Cerro account verification'}
@@ -49,7 +49,6 @@ class RegisterView(generics.GenericAPIView):
 
 class VerifyEmail(views.APIView):
     serializer_class = EmailVerificationSerializer
-
     token_param_config = openapi.Parameter('token', in_=openapi.IN_QUERY, description='Description', type=openapi.TYPE_STRING)
 
     @swagger_auto_schema(manual_parameters=[token_param_config])
@@ -129,14 +128,12 @@ class SetNewPasswordAPIView(generics.GenericAPIView):
 
     def patch(self, request):
         serializer = self.serializer_class(data=request.data)
-
         serializer.is_valid(raise_exception=True)
-        return  Response({'success': True, 'message': 'Password reset success'}, status=status)
+        return Response({'success': True, 'message': 'Password reset success'}, status=status)
 
 
 class LogoutAPIView(generics.GenericAPIView):
     serializer_class = LogoutSerializer
-
     permission_classes = (permissions.IsAuthenticated,)
 
     def post(self, request):
