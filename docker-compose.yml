@@ -25,6 +25,6 @@ services:
     environment:
       - POSTGRES_DB=user_db
       - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=''
+      - POSTGRES_PASSWORD=supersecretpassword
 volumes:
   postgres_data:
