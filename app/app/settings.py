@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'authentication',
     'social_auth',
     'expenses',
+    'income',
     'drf_yasg',  # https://drf-yasg.readthedocs.io/en/stable/readme.html#installation
     'rest_framework_simplejwt.token_blacklist',
 ]

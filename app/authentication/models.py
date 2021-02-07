@@ -6,7 +6,8 @@ from rest_framework_simplejwt.tokens import RefreshToken
 
 class UserManager(BaseUserManager):
     """ Manager for user profiles. Extends the base user manager """
-    def create_user(self, username, email, password=None):
+    def create_user(self, username, email, password=None, **extra_fields):
+        """ Creates and saves new user"""
         if username is None:
             raise TypeError('Users must have a username')
         if email is None:
@@ -18,6 +19,7 @@ class UserManager(BaseUserManager):
         return user
 
     def create_superuser(self, username, email, password=None):
+        """ Creates and saves new superuser, it's created only from the console """
         if password is None:
             raise TypeError('Users must have a password')
 
@@ -36,7 +38,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField(max_length=255, default="")
     last_name = models.CharField(max_length=255, default="")
     title = models.CharField(max_length=15, default="")
-    # date_of_birth = models.DateField(auto_now=True)
 
     is_verified = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
