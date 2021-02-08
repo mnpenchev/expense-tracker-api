@@ -1,6 +1,7 @@
 from django.urls import path
 from .views import RegisterView, VerifyEmail, LoginAPIView, PasswordTokenCheckAPI, RequestPasswordResetEmail, SetNewPasswordAPIView, LogoutAPIView
-from rest_framework_simplejwt.views import TokenRefreshView  # https://django-rest-framework-simplejwt.readthedocs.io/en/latest/getting_started.html#usage
+from rest_framework_simplejwt.views import (TokenRefreshView,)  # https://django-rest-framework-simplejwt.readthedocs.io/en/latest/getting_started.html#usage
+
 
 urlpatterns = [
     path('login/', LoginAPIView.as_view(), name="login"),

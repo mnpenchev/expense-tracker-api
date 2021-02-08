@@ -33,11 +33,13 @@ schema_view = get_schema_view(
    permission_classes=(permissions.AllowAny,),
 )
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/', include('authentication.urls')),
     path('expenses/', include('expenses.urls')),
     path('incomes/', include('income.urls')),
+    path('userstats/', include('userstats.urls')),
     path('social_auth/', include(('social_auth.urls', 'social_auth'),
                                  namespace="social_auth")),
     path('', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),

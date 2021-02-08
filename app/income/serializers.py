@@ -3,6 +3,7 @@ from .models import Income
 
 
 class IncomeSerializer(serializers.ModelSerializer):
+    """ Serializer for the Income model, in fields we specify the model attributes we want to deserialize and serialize """
 
     class Meta:
         model = Income
