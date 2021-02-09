@@ -20,9 +20,9 @@ class IncomeListAPIView(ListCreateAPIView):
 
 class IncomeDetailAPIView(RetrieveUpdateDestroyAPIView):
     serializer_class = IncomeSerializer
-    queryset = Income.objects.all()
     permission_classes = (permissions.IsAuthenticated, IsOwner,)
-    lookup_fields = 'id'
+    queryset = Income.objects.all()
+    lookup_field = "id"
 
     def get_queryset(self):
         return self.queryset.filter(owner=self.request.user)
