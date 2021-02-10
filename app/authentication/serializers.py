@@ -62,6 +62,7 @@ class LoginSerializer(serializers.ModelSerializer):
         email = attrs.get('email', '')
         password = attrs.get('password', '')
         filtered_user_by_email = User.objects.filter(email=email)
+
         user = auth.authenticate(email=email, password=password)
 
         if filtered_user_by_email.exists() and filtered_user_by_email[0].auth_provider != 'email':
