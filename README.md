@@ -5,7 +5,9 @@ Endpoints:
 
 admin/ - admin panel
 
-Head to the root web address. A swagger module will guide you trough all the possible API endpoints with examples as in the image below:
+Head to the root web address. (localhost:8000)
+
+The swagger module will guide you trough all the possible API endpoints with examples and documentation as in the image below:
 
 <img src="images/swagger.png">
 
